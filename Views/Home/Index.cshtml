@@ -1,8 +1,55 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Gerador de Senhas";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Crie uma Senha</h1>
+    <p>Senhas fortes e seguras</p>
+</div>
+
+<br />
+
+<div class="d-flex justify-content-center">
+    <div class="d-flex flex-column align-items-start">
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Incluir letras minúsculas</label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Incluir letras maiúsculas</label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Incluir letras números</label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Incluir letras caracteres especiais</label>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="d-flex flex-column align-items-center">
+    <label for="customRange2" class="form-label">Tamanho da Senha</label>
+    <input type="range" class="form-range w-50" min="12" max="50" value="12" id="customRange2"
+        oninput="atualizarValor()">
+    <p id="valorSelecionado" class="mt-2">12 caracteres</p>
+</div>
+
+<br />
+
+<div class="d-flex flex-column align-items-center">
+    <button type="button" class="btn btn-success w-25">Gerar Senha</button>
+</div>
+
+<br />
+
+<div class="d-flex flex-column align-items-center">
+    <h3>k297:[Ie_@@8-</h3>
 </div>
