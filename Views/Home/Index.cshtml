@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SenhaModel
+@{
     ViewData["Title"] = "Gerador de Senhas";
 }
 
@@ -9,47 +10,49 @@
 
 <br />
 
-<div class="d-flex justify-content-center">
-    <div class="d-flex flex-column align-items-start">
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Incluir letras minúsculas</label>
-        </div>
+<form asp-controller="Home" asp-action="Gerar">
+    <div class="d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-start">
+            <div class="form-check form-switch">
+                <input asp-for="LetrasMinusculas" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Incluir letras minúsculas</label>
+            </div>
 
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Incluir letras maiúsculas</label>
-        </div>
+            <div class="form-check form-switch">
+                <input asp-for="LetrasMaiusculas" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Incluir letras maiúsculas</label>
+            </div>
 
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Incluir letras números</label>
-        </div>
+            <div class="form-check form-switch">
+                <input asp-for="Numeros" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Incluir letras números</label>
+            </div>
 
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Incluir letras caracteres especiais</label>
+            <div class="form-check form-switch">
+                <input asp-for="CaracteresEspeciais" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Incluir letras caracteres especiais</label>
+            </div>
         </div>
     </div>
-</div>
+
+    <br />
+
+    <div class="d-flex flex-column align-items-center">
+        <label for="customRange2" class="form-label">Tamanho da Senha</label>
+        <input asp-for="Tamanho" type="range" class="form-range w-50" min="12" max="50" value="@Model.Tamanho" id="customRange2"
+            oninput="atualizarValor()">
+        <p id="valorSelecionado" class="mt-2">@Model.Tamanho caracteres</p>
+    </div>
+
+    <br />
+
+    <div class="d-flex flex-column align-items-center">
+        <button type="submit" class="btn btn-success w-25">Gerar Senha</button>
+    </div>
+</form>
 
 <br />
 
 <div class="d-flex flex-column align-items-center">
-    <label for="customRange2" class="form-label">Tamanho da Senha</label>
-    <input type="range" class="form-range w-50" min="12" max="50" value="12" id="customRange2"
-        oninput="atualizarValor()">
-    <p id="valorSelecionado" class="mt-2">12 caracteres</p>
-</div>
-
-<br />
-
-<div class="d-flex flex-column align-items-center">
-    <button type="button" class="btn btn-success w-25">Gerar Senha</button>
-</div>
-
-<br />
-
-<div class="d-flex flex-column align-items-center">
-    <h3>k297:[Ie_@@8-</h3>
+    <h3>@Model.SenhaGerada</h3>
 </div>
