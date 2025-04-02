@@ -1,26 +1,36 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using GeradorSenhasMVC.Models;
+using GeradorSenhasMVC.Services;
 
 namespace GeradorSenhasMVC.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ISenhaService _senhaService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ISenhaService senhaService)
     {
-        _logger = logger;
+        _senhaService = senhaService;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(SenhaModel regrasSenha)
     {
-        return View();
+        return View(regrasSenha);
     }
 
-    public IActionResult Privacy()
+    public IActionResult Gerar(SenhaModel regrasSenha)
     {
-        return View();
+        try
+        {
+            var senha = _senhaService.GerarSenha(regrasSenha);
+            regrasSenha.SenhaGerada = senha;
+            return RedirectToAction("Index", regrasSenha);
+        }
+        catch (Exception ex)
+        {
+            return View("Error", ex.Message);
+        }
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
